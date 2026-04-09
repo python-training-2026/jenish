@@ -1,38 +1,42 @@
 class BankAccount:
-    def __init__(self, name, balance, pin):
-        self.name = name
-        self.__balance = balance
-        self.__pin = pin
+      def __init__(self):
+        self.balance = 0
 
-    def login(self):
-        entered_pin = int(input("Enter PIN: "))
-        if entered_pin == self.__pin:
-            print("Login successful")
-            return True
-        else:
-            print("Wrong PIN")
-            return False
+      def check_balance(self):
+        print("balance:",self.balance)
 
-    def check_balance(self):
-        print("Balance:", self.__balance)
-
-    def deposit(self):
+      def deposit(self):
         amount = int(input("Enter amount: "))
-        self.__balance += amount
+        self.balance += amount
         print("Deposited")
 
-    def withdraw(self):
+      def withdraw(self):
         amount = int(input("Enter amount: "))
-        if amount <= self.__balance:
-            self.__balance -= amount
-            print("Withdrawn")
-        else:
-            print("No balance")
+        self.balance -= amount
+        print("withdraw")
 
-obj = BankAccount("Jenish", 1000, 1234)
+class ATM(BankAccount):
+  def menu(self):
+   while True:
+    print("check_balance ,deposit ,withdraw")
 
-if obj.login():
-    obj.check_balance()
-    obj.deposit()
-    obj.withdraw()
-    obj.check_balance()
+    choice = input("Enter choice:")
+
+    if choice =='1':
+      self.check_balance()
+
+    elif choice =='2':
+      self.deposit()
+
+    elif choice =='3':
+       self.withdraw()
+
+    elif choice =='4':
+      break
+
+
+    else:
+      print("Invalid choice")
+
+obj=ATM()
+obj.menu()
